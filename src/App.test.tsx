@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { shallow, mount } from 'enzyme';
 import { store } from './app/store';
 import App from './App';
-import { AppTitle } from './components/AppTitle';
+import AppTitle from './components/AppTitle';
 
 describe('<App />', () => {
   it('match snapshot', () => {

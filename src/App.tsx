@@ -1,5 +1,5 @@
 import './App.css';
-import { AppTitle } from './components/AppTitle';
+import AppTitle from './components/AppTitle';
 
 function App() {
   return (
