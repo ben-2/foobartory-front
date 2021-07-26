@@ -1,15 +1,24 @@
-import React from 'react';
-import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { shallow, mount } from 'enzyme';
 import { store } from './app/store';
 import App from './App';
+import AppTitle from './components/AppTitle';
+import AppSubTitle from './components/AppSubTitle';
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+describe('<App />', () => {
+  it('match snapshot', () => {
+    const wrapper = mount(
+      <Provider store={store}>
+        <App />
+      </Provider>)
+    console.log(wrapper.debug())
+    expect(wrapper).toMatchSnapshot();
+  })
+  it('display one Title', () => {
+    const wrapper = shallow(
+      <App />)
+    expect(wrapper.find(AppTitle).length).toEqual(1);
+    expect(wrapper.find(AppSubTitle).length).toEqual(1);
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+  })
 });
