@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { store } from './app/store';
 import App from './App';
 import AppTitle from './components/AppTitle';
+import AppSubTitle from './components/AppSubTitle';
 
 describe('<App />', () => {
   it('match snapshot', () => {
@@ -17,6 +18,7 @@ describe('<App />', () => {
     const wrapper = shallow(
       <App />)
     expect(wrapper.find(AppTitle).length).toEqual(1);
+    expect(wrapper.find(AppSubTitle).length).toEqual(1);
 
   })
 });
