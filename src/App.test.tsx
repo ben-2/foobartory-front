@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { shallow, mount } from 'enzyme';
-import { store } from './app/store';
+import { store } from './store';
 import App from './App';
 import AppTitle from './components/AppTitle';
 import AppSubTitle from './components/AppSubTitle';

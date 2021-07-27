@@ -5,7 +5,7 @@ import { useStoreState } from '../../hooks';
 
 export function LangProvider(props: any) {
   const lang = useStoreState((state) => state.lang);
-
+  console.log('PROVIDER lang : ', lang);
   /* Define your translations */
   const langObjEn = {
     locale: 'en',
@@ -19,6 +19,8 @@ export function LangProvider(props: any) {
     langObjFr,
     langObjEn
   ];
+  console.log('PROVIDER i18nConfig : ', i18nConfig);
+
 
   const localeConfig = i18nConfig.filter((config) => config.locale === lang)[0];
   return (
