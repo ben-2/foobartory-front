@@ -1,14 +1,49 @@
-import styles from './LangSelect.module.css';
-import { useStoreState } from 'easy-peasy';
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { useStoreState, useStoreActions } from '../../hooks';
+import { FormattedMessage } from 'react-intl';
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  }
+}));
 
 export function LangSelect() {
   const lang = useStoreState((state) => state.lang);
+  const setLang = useStoreActions((actions) => actions.setLang);
+  console.log('lang : ', lang);
+
+  const classes = useStyles();
+
+  const handleChange = (event: any) => {
+    const value: string = event.target.value;
+    setLang(value);
+  };
 
   return (
     <>
-      <div className={styles.title}>
-        Selecteur de langue
-      </div>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-label">
+          <FormattedMessage id="lang-used" />
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={lang}
+          onChange={handleChange}
+        >
+          <MenuItem value={'fr'}><FormattedMessage id="french" /></MenuItem>
+          <MenuItem value={'en'}><FormattedMessage id="english" /></MenuItem>
+        </Select>
+      </FormControl>
     </>
   );
 }

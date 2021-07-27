@@ -6,7 +6,7 @@ import { StoreProvider } from 'easy-peasy';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
 import LangProvider from './providers/LangProvider';
-
+import '@fontsource/roboto';
 
 ReactDOM.render(
   <React.StrictMode>

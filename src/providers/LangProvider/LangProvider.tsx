@@ -1,11 +1,11 @@
 import { IntlProvider } from 'react-intl';
 import en from '../../lang/en.json';
 import fr from '../../lang/fr.json';
+import { useStoreState } from '../../hooks';
 
 export function LangProvider(props: any) {
-  const { children } = props;
+  const lang = useStoreState((state) => state.lang);
 
-  const lang = 'en';
   /* Define your translations */
   const langObjEn = {
     locale: 'en',
@@ -19,7 +19,7 @@ export function LangProvider(props: any) {
     langObjFr,
     langObjEn
   ];
-  console.log('i18nConfig : ', i18nConfig);
+
   const localeConfig = i18nConfig.filter((config) => config.locale === lang)[0];
   return (
     <IntlProvider
@@ -27,7 +27,7 @@ export function LangProvider(props: any) {
       defaultLocale={localeConfig.locale}
       messages={localeConfig.messages}
     >
-      {children}
+      {props.children}
     </IntlProvider>
   );
 }
