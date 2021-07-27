@@ -18,7 +18,6 @@ describe('<App />', () => {
           <App />
         </LangProvider>
       </StoreProvider>)
-    console.log(wrapper.debug())
     expect(wrapper).toMatchSnapshot();
   })
   it('display one Title', () => {
