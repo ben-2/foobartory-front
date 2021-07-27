@@ -4,6 +4,7 @@ import { store } from './app/store';
 import App from './App';
 import AppTitle from './components/AppTitle';
 import AppSubTitle from './components/AppSubTitle';
+import LangSelect from './components/LangSelect';
 
 describe('<App />', () => {
   it('match snapshot', () => {
@@ -19,6 +20,7 @@ describe('<App />', () => {
       <App />)
     expect(wrapper.find(AppTitle).length).toEqual(1);
     expect(wrapper.find(AppSubTitle).length).toEqual(1);
+    expect(wrapper.find(LangSelect).length).toEqual(1);
 
   })
 });
