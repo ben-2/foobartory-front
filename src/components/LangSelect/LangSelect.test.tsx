@@ -1,9 +1,9 @@
 import { LangSelect } from './LangSelect';
 import { createStore, StoreProvider } from 'easy-peasy';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { store } from '../../store';
 import LangProvider from '../../providers/LangProvider';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 describe('<LangSelect />', () => {
   it('match snapshot', () => {
