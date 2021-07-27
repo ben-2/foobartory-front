@@ -19,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
 export function LangSelect() {
   const lang = useStoreState((state) => state.lang);
   const setLang = useStoreActions((actions) => actions.setLang);
-  console.log('lang : ', lang);
-
   const classes = useStyles();
 
   const handleChange = (event: any) => {
@@ -31,10 +29,11 @@ export function LangSelect() {
   return (
     <>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">
+        <InputLabel id="select-language">
           <FormattedMessage id="lang-used" />
         </InputLabel>
         <Select
+          data-testid="lang"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={lang}
