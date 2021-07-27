@@ -6,9 +6,11 @@ import LangSelect from './components/LangSelect';
 function App() {
   return (
     <div className="App">
-      <AppTitle />
-      <AppSubTitle />
-      <LangSelect />
+      <div className="LangSelect"><LangSelect /></div>
+      <div>
+        <AppTitle />
+        <AppSubTitle />
+      </div>
     </div>
   );
 }
