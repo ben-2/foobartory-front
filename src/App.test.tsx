@@ -1,17 +1,23 @@
-import { Provider } from 'react-redux';
 import { shallow, mount } from 'enzyme';
-import { store } from './app/store';
+import { createStore, StoreProvider } from 'easy-peasy';
+import { store } from './store';
 import App from './App';
 import AppTitle from './components/AppTitle';
 import AppSubTitle from './components/AppSubTitle';
+import LangSelect from './components/LangSelect';
+import LangProvider from './providers/LangProvider';
 
 describe('<App />', () => {
   it('match snapshot', () => {
+    const initialStateForTest = { lang: 'fr', setLang: jest.fn() };
+    const storeTest = createStore(store, { initialState: initialStateForTest });
+
     const wrapper = mount(
-      <Provider store={store}>
-        <App />
-      </Provider>)
-    console.log(wrapper.debug())
+      <StoreProvider store={storeTest}>
+        <LangProvider>
+          <App />
+        </LangProvider>
+      </StoreProvider>)
     expect(wrapper).toMatchSnapshot();
   })
   it('display one Title', () => {
@@ -19,6 +25,7 @@ describe('<App />', () => {
       <App />)
     expect(wrapper.find(AppTitle).length).toEqual(1);
     expect(wrapper.find(AppSubTitle).length).toEqual(1);
+    expect(wrapper.find(LangSelect).length).toEqual(1);
 
   })
 });
