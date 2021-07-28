@@ -1,16 +1,17 @@
 import styles from './StartButton.module.css';
 import { FormattedMessage } from 'react-intl';
-import { useStoreState, useStoreActions } from '../../hooks';
+import { useStoreActions } from '../../hooks';
+import Button from '@material-ui/core/Button';
 
 export function StartButton() {
   const startGame = useStoreActions((actions) => actions.startGame);
 
   return (
     <>
-      <div className={styles.subtitle} >
-        <button onClick={(event) => startGame()}>
+      <div className={styles.startButton} >
+        <Button variant="contained" color="primary" size="large" onClick={(event) => startGame()}>
           <FormattedMessage id="startGame" />
-        </button>
+        </Button>
       </div>
     </>
   );
