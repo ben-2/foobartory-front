@@ -5,7 +5,7 @@ export function StartButton() {
   return (
     <>
       <div className={styles.subtitle}>
-        <FormattedMessage id="subtitle" />
+        START BUTTON
       </div>
     </>
   );
