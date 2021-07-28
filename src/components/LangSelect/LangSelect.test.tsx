@@ -43,4 +43,12 @@ describe('<LangSelect />', () => {
     const { getByTestId } = render(app);
     expect(getByTestId('lang').textContent).toEqual('English');
   })
+
+  it('changes lang on select', () => {
+    const initialStateForTest = { lang: 'fr' };
+    const storeTest = createStore(store, { initialState: initialStateForTest });
+    store.getActions().setLang('en');
+
+    expect(store.getState().lang).toEqual('en');
+  })
 });
