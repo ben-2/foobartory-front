@@ -7,6 +7,7 @@ export interface IStoreModel {
   startGame: Action<IStoreModel>;
   robotsConfiguration: IRobotAttributes[];
   countFoo: number;
+  countBar: number;
 }
 
 const model: IStoreModel = {
@@ -32,7 +33,8 @@ const model: IStoreModel = {
       previousActivity: '',
     }
   ],
-  countFoo: 0
+  countFoo: 0,
+  countBar: 0
 };
 
 
