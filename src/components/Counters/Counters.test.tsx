@@ -1,19 +1,15 @@
-import { createStore, StoreProvider } from 'easy-peasy';
 import { Counters } from './Counters';
-import { store } from '../../store';
-import { mount } from 'enzyme';
-import { useStoreState } from '../../hooks';
+import { shallow } from 'enzyme';
+import CounterFoo from '../CounterFoo';
 
 describe('<Counters />', () => {
   it('match snapshot', () => {
-    const initialStateForTest = {
-      countFoo: 0
-    };
-    const storeTest = createStore(store, { initialState: initialStateForTest });
-    const wrapper = mount(
-      <StoreProvider store={storeTest}>
-        <Counters />
-      </StoreProvider>)
+    const wrapper = shallow(<Counters />);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('renders a Counter of Foo', () => {
+    const wrapper = shallow(<Counters />);
+    expect(wrapper.find(CounterFoo).length).toEqual(1);
   });
 });
