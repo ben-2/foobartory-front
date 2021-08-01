@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Robots /> renders an emtpy Paper Card when the game starts 1`] = `ShallowWrapper {}`;
