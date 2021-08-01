@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import { useStoreState } from '../../hooks';
+import { useStoreState, useStoreActions } from '../../hooks';
 import { FormattedMessage } from 'react-intl';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
@@ -7,10 +7,15 @@ import BookmarksOutlinedIcon from '@material-ui/icons/BookmarksOutlined';
 import AdbIcon from '@material-ui/icons/Adb';
 import styles from './DisplayActivities.module.css';
 
-export function DisplayActivities() {
+export function DisplayActivities(props: any) {
   const countFooBar = useStoreState((state) => state.countFooBar);
   const countFoo = useStoreState((state) => state.countFoo);
   const countBar = useStoreState((state) => state.countBar);
+  const setIsRobotAvailable = useStoreActions((actions) => actions.setIsRobotAvailable);
+
+  const mineFoo = () => {
+    setIsRobotAvailable({ id: props.robotConf.id, value: false });
+  }
   return (
     <>
       <div className={styles.fooAndBarButtonsWrapper}>
@@ -20,6 +25,7 @@ export function DisplayActivities() {
             size="small"
             variant="contained"
             color="primary"
+            onClick={() => mineFoo()}
           >
             <FormattedMessage id="mine" /> Foo
           </Button>
