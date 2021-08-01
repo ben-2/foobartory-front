@@ -10,7 +10,9 @@ export interface IStoreModel {
   countBar: number;
   countFooBar: number;
   setIsRobotAvailable: Thunk<IStoreModel, { id: number, value: boolean }>;
-  setIsRobotAvailableAction: Action<IStoreModel, IRobotAttributes[]>;
+  updateRobotConfiguration: Action<IStoreModel, IRobotAttributes[]>;
+  setRobotActivity: Thunk<IStoreModel, { id: number, value: 'foo' | 'bar' | 'foobar' | 'robot' | '' }>;
+  incrementFooCounter: Action<IStoreModel, number>;
 }
 
 const model: IStoreModel = {
@@ -48,10 +50,25 @@ const model: IStoreModel = {
       }
       return currentRobot;
     });
-    actions.setIsRobotAvailableAction(currentRobotConf);
+    actions.updateRobotConfiguration(currentRobotConf);
   }),
-  setIsRobotAvailableAction: action((state, payload) => {
+  updateRobotConfiguration: action((state, payload) => {
     state.robotsConfiguration = payload;
+  }),
+  setRobotActivity: thunk((actions, payload, { getState }) => {
+    const storeState = getState();
+    const currentRobotConf = storeState.robotsConfiguration.map((robot) => {
+      const currentRobot = robot;
+      if (robot.id === payload.id) {
+        currentRobot.previousActivity = robot.currentActivity;
+        currentRobot.currentActivity = payload.value;
+      }
+      return currentRobot;
+    });
+    actions.updateRobotConfiguration(currentRobotConf);
+  }),
+  incrementFooCounter: action((state, payload) => {
+    state.countFoo = payload + 1;
   }),
 };
 

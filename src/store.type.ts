@@ -1,6 +1,6 @@
 export interface IRobotAttributes {
   id: number;
-  currentActivity: string;
+  currentActivity: 'foo' | 'bar' | 'foobar' | '' | 'robot';
   isRobotAvailable: boolean;
-  previousActivity: 'foo' | 'bar' | 'foobar' | '';
+  previousActivity: 'foo' | 'bar' | 'foobar' | '' | 'robot';
 }
