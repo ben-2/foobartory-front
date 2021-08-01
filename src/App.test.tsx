@@ -11,7 +11,24 @@ import LangProvider from './providers/LangProvider';
 
 describe('<App />', () => {
   it('match snapshot', () => {
-    const initialStateForTest = { lang: 'fr', setLang: jest.fn() };
+    const initialStateForTest = {
+      lang: 'fr',
+      setLang: jest.fn(),
+      robotsConfiguration: [
+        {
+          id: 1,
+          currentActivity: '',
+          isRobotAvailable: true,
+          previousActivity: '',
+        },
+        {
+          id: 2,
+          currentActivity: '',
+          isRobotAvailable: true,
+          previousActivity: '',
+        }
+      ]
+    };
     const storeTest = createStore(store, { initialState: initialStateForTest });
 
     const wrapper = mount(
@@ -23,7 +40,24 @@ describe('<App />', () => {
     expect(wrapper).toMatchSnapshot();
   })
   it('displays one Title, one subtitle and a language selector', () => {
-    const initialStateForTest = { lang: 'fr', setLang: jest.fn() };
+    const initialStateForTest = {
+      lang: 'fr',
+      setLang: jest.fn(),
+      robotsConfiguration: [
+        {
+          id: 1,
+          currentActivity: '',
+          isRobotAvailable: true,
+          previousActivity: '',
+        },
+        {
+          id: 2,
+          currentActivity: '',
+          isRobotAvailable: true,
+          previousActivity: '',
+        }
+      ]
+    };
     const storeTest = createStore(store, { initialState: initialStateForTest });
 
     const wrapper = mount(
@@ -38,7 +72,25 @@ describe('<App />', () => {
   })
 
   it('displays one StartButton if the game has not started yet', () => {
-    const initialStateForTest = { lang: 'fr', setLang: jest.fn(), isGameStarted: false };
+    const initialStateForTest = {
+      lang: 'fr',
+      setLang: jest.fn(),
+      isGameStarted: false,
+      robotsConfiguration: [
+        {
+          id: 1,
+          currentActivity: '',
+          isRobotAvailable: true,
+          previousActivity: '',
+        },
+        {
+          id: 2,
+          currentActivity: '',
+          isRobotAvailable: true,
+          previousActivity: '',
+        }
+      ]
+    };
     const storeTest = createStore(store, { initialState: initialStateForTest });
 
     const wrapper = mount(
@@ -52,7 +104,25 @@ describe('<App />', () => {
   })
 
   it('displays one GameBoard when the game starts', () => {
-    const initialStateForTest = { lang: 'fr', setLang: jest.fn(), isGameStarted: true };
+    const initialStateForTest = {
+      lang: 'fr',
+      setLang: jest.fn(),
+      isGameStarted: true,
+      robotsConfiguration: [
+        {
+          id: 1,
+          currentActivity: '',
+          isRobotAvailable: true,
+          previousActivity: '',
+        },
+        {
+          id: 2,
+          currentActivity: '',
+          isRobotAvailable: true,
+          previousActivity: '',
+        }
+      ]
+    };
     const storeTest = createStore(store, { initialState: initialStateForTest });
 
     const wrapper = mount(
