@@ -1,5 +1,48 @@
-.robots {
-  margin-top: 30px;
-  margin-left: 10%;
-  margin-right: 10%;
+.fooBarWrapper {
+  width: 100%;
+}
+.fooAndBarWrapper {
+  margin-top: 5px;
+  display: inline-block;
+  width: 100%;
+}
+.fooCounter {
+  display: inline-block;
+  width: 190px;
+  margin-right: 30px;
+}
+
+.fooCounterHeader {
+  height: 25px;
+}
+
+.fooCounterContent {
+  height: 17px;
+}
+
+.barCounter {
+  display: inline-block;
+  width: 190px;
+  margin-left: 30px;
+}
+
+.barCounterHeader {
+  height: 25px;
+}
+
+.barCounterContent {
+  height: 17px;
+}
+
+.fooBarCounter {
+  display: inline-block;
+  width: 220px;
+}
+
+.fooBarCounterHeader {
+  height: 30px;
+}
+
+.fooBarCounterContent {
+  height: 22px;
 }
