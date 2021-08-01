@@ -10,7 +10,9 @@ describe('<DisplayActivities />', () => {
   it('match snapshot', () => {
     const initialStateForTest = {
       lang: 'fr',
-      countBar: 0
+      countFoo: 0,
+      countBar: 0,
+      countFooBar: 0
     };
     const storeTest = createStore(store, { initialState: initialStateForTest });
     const wrapper = mount(

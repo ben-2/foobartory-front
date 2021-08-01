@@ -1,0 +1,26 @@
+.fooAndBarButtonsWrapper {
+  display: inline-block;
+  width: 100%;
+}
+
+.fooButtonWrapper {
+  display: inline-block;
+  margin-right: 2px;
+}
+
+.barButtonWrapper {
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.fooBarButtonWrapper {
+  margin-top: 5px;
+  display: inline-block;
+  width: 100%;
+}
+
+.buyRobotButtonWrapper {
+  margin-top: 5px;
+  display: inline-block;
+  width: 100%;
+}
