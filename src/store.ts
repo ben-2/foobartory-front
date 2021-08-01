@@ -1,4 +1,4 @@
-import { createStore, Action, action } from 'easy-peasy';
+import { createStore, Action, action, Thunk, thunk } from 'easy-peasy';
 import { IRobotAttributes } from './store.type';
 export interface IStoreModel {
   lang: string;
@@ -9,6 +9,8 @@ export interface IStoreModel {
   countFoo: number;
   countBar: number;
   countFooBar: number;
+  setIsRobotAvailable: Thunk<IStoreModel, { id: number, value: boolean }>;
+  setIsRobotAvailableAction: Action<IStoreModel, IRobotAttributes[]>;
 }
 
 const model: IStoreModel = {
@@ -36,7 +38,21 @@ const model: IStoreModel = {
   ],
   countFoo: 0,
   countBar: 0,
-  countFooBar: 0
+  countFooBar: 0,
+  setIsRobotAvailable: thunk((actions, payload, { getState }) => {
+    const storeState = getState();
+    const currentRobotConf = storeState.robotsConfiguration.map((robot) => {
+      const currentRobot = robot;
+      if (robot.id === payload.id) {
+        currentRobot.isRobotAvailable = payload.value;
+      }
+      return currentRobot;
+    });
+    actions.setIsRobotAvailableAction(currentRobotConf);
+  }),
+  setIsRobotAvailableAction: action((state, payload) => {
+    state.robotsConfiguration = payload;
+  }),
 };
 
 
