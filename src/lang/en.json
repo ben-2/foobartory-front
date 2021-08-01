@@ -5,5 +5,8 @@
   "english": "English",
   "subtitle": "Robot production line",
   "startGame": "Start",
-  "numberOf": "Amount of"
+  "numberOf": "Amount of",
+  "mine": "Mine",
+  "assemble": "Assemble",
+  "buyRobot": "Buy robot"
 }

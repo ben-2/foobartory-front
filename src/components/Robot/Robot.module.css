@@ -1,7 +1,29 @@
 .robot {
-  width: 100px;
-  min-height: 100px;
+  width: 300px;
+  min-height: 200px;
   margin-right: 10px;
   margin-bottom: 20px;
   display: inline-block;
+  position: relative;
+}
+
+.robotIcon {
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+
+.innerIcon {
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.innerIndex {
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.displayActivitiesSection {
+  position:absolute;
+  top:60px;
 }

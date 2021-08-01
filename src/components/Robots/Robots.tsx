@@ -8,8 +8,8 @@ export function Robots() {
   return (
     <>
       <div className={styles.robots}>
-        {robotsConfiguration.map((i, index) => {
-          return <Robot key={index} />;
+        {robotsConfiguration.map((robotConf, index) => {
+          return <Robot key={index} robotConf={robotConf} />;
         })}
       </div>
     </>

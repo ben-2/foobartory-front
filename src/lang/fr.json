@@ -5,5 +5,8 @@
   "english": "Anglais",
   "subtitle": "Chaîne de production de robots",
   "startGame": "Démarrer",
-  "numberOf": "Nombre de"
+  "numberOf": "Nombre de",
+  "mine": "Miner",
+  "assemble": "Assembler",
+  "buyRobot": "Acheter robot"
 }

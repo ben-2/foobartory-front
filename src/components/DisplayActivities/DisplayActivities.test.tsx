@@ -1,12 +1,13 @@
-import { Robot } from './Robot';
-import { mount } from 'enzyme';
-import { store } from '../../store';
 import { createStore, StoreProvider } from 'easy-peasy';
+import { DisplayActivities } from './DisplayActivities';
+import { store } from '../../store';
+import { mount, shallow } from 'enzyme';
+import { useStoreState } from '../../hooks';
 import LangProvider from '../../providers/LangProvider';
+import Button from '@material-ui/core/Button';
 
-describe('<Robot />', () => {
-  it('renders an emtpy Paper Card when the game starts', () => {
-    const props: any = { key: 1, robotConf: { id: 3 } };
+describe('<DisplayActivities />', () => {
+  it('match snapshot', () => {
     const initialStateForTest = {
       lang: 'fr',
       countFoo: 0,
@@ -17,9 +18,9 @@ describe('<Robot />', () => {
     const wrapper = mount(
       <StoreProvider store={storeTest}>
         <LangProvider>
-          <Robot props={props} />
+          <DisplayActivities />
         </LangProvider>
       </StoreProvider>)
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 });

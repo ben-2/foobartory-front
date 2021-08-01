@@ -4,10 +4,12 @@ import { Robots } from './Robots';
 import { store } from '../../store';
 import { mount } from 'enzyme';
 import { useStoreState } from '../../hooks';
+import LangProvider from '../../providers/LangProvider';
 
 describe('<Robots />', () => {
   it('match snapshot', () => {
     const initialStateForTest = {
+      lang: 'fr',
       robotsConfiguration: [
         {
           id: 1,
@@ -26,13 +28,16 @@ describe('<Robots />', () => {
     const storeTest = createStore(store, { initialState: initialStateForTest });
     const wrapper = mount(
       <StoreProvider store={storeTest}>
-        <Robots />
+        <LangProvider>
+          <Robots />
+        </LangProvider>
       </StoreProvider>)
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should generate as many robots as there is in robots configuration array - 3', () => {
     const initialStateForTest = {
+      lang: 'fr',
       robotsConfiguration: [
         {
           id: 1,
@@ -57,13 +62,16 @@ describe('<Robots />', () => {
     const storeTest = createStore(store, { initialState: initialStateForTest });
     const wrapper = mount(
       <StoreProvider store={storeTest}>
-        <Robots />
+        <LangProvider>
+          <Robots />
+        </LangProvider>
       </StoreProvider>)
     expect(wrapper.find(Robot).length).toEqual(3);
   })
 
   it('should generate as many robots as there is in robots configuration array - 20', () => {
     const initialStateForTest = {
+      lang: 'fr',
       robotsConfiguration: [
         {
           id: 1,
@@ -190,7 +198,9 @@ describe('<Robots />', () => {
     const storeTest = createStore(store, { initialState: initialStateForTest });
     const wrapper = mount(
       <StoreProvider store={storeTest}>
-        <Robots />
+        <LangProvider>
+          <Robots />
+        </LangProvider>
       </StoreProvider>)
     expect(wrapper.find(Robot).length).toEqual(20);
   })
