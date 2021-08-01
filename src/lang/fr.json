@@ -6,5 +6,7 @@
   "subtitle": "Chaîne de production de robots",
   "startGame": "Démarrer",
   "numberOf": "Nombre de",
-  "mine": "Miner"
+  "mine": "Miner",
+  "assemble": "Assembler",
+  "buyRobot": "Acheter robot"
 }

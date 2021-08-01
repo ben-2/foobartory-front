@@ -1,9 +1,10 @@
 import { createStore, StoreProvider } from 'easy-peasy';
 import { DisplayActivities } from './DisplayActivities';
 import { store } from '../../store';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { useStoreState } from '../../hooks';
 import LangProvider from '../../providers/LangProvider';
+import Button from '@material-ui/core/Button';
 
 describe('<DisplayActivities />', () => {
   it('match snapshot', () => {
