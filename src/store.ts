@@ -8,6 +8,7 @@ export interface IStoreModel {
   robotsConfiguration: IRobotAttributes[];
   countFoo: number;
   countBar: number;
+  countFooBar: number;
 }
 
 const model: IStoreModel = {
@@ -34,7 +35,8 @@ const model: IStoreModel = {
     }
   ],
   countFoo: 0,
-  countBar: 0
+  countBar: 0,
+  countFooBar: 0
 };
 
 
