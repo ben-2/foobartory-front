@@ -7,9 +7,11 @@ import StartButton from './components/StartButton';
 import GameBoard from './components/GameBoard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FormattedMessage } from 'react-intl';
 
 function App() {
   const isGameStarted = useStoreState((state) => state.isGameStarted);
+  const isGameEnded = useStoreState((state) => state.isGameEnded);
 
   return (
     <div className="App">
@@ -18,7 +20,7 @@ function App() {
         <AppTitle />
         <AppSubTitle />
       </div>
-      <div>{isGameStarted ? <GameBoard /> : <StartButton />}</div>
+      {isGameEnded ? <div className={'EndOfGame'}><FormattedMessage id="end" />!</div> : <div>{isGameStarted ? <GameBoard /> : <StartButton />}</div>}
       <ToastContainer hideProgressBar={true} />
     </div>
   );

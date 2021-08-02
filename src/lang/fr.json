@@ -8,5 +8,6 @@
   "numberOf": "Nombre de",
   "mine": "Miner",
   "assemble": "Assembler",
-  "buyRobot": "Acheter robot"
+  "buyRobot": "Acheter robot",
+  "end": "Félicitations vous avez produits tous les robots du jeu !"
 }

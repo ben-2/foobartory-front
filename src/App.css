@@ -6,6 +6,11 @@
   text-align: right;
 }
 
+.EndOfGame {
+  font-size: 30px;
+  margin-top: 44px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

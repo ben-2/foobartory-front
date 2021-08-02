@@ -4,7 +4,9 @@ export interface IStoreModel {
   lang: string;
   setLang: Action<IStoreModel, string>;
   isGameStarted: boolean;
+  isGameEnded: boolean;
   startGame: Action<IStoreModel>;
+  endGame: Action<IStoreModel>;
   robotsConfiguration: IRobotAttributes[];
   countFoo: number;
   countBar: number;
@@ -27,8 +29,12 @@ const model: IStoreModel = {
     state.lang = payload;
   }),
   isGameStarted: false,
-  startGame: action((state, payload) => {
+  isGameEnded: false,
+  startGame: action((state) => {
     state.isGameStarted = true;
+  }),
+  endGame: action((state) => {
+    state.isGameEnded = true;
   }),
   robotsConfiguration: [
     {
