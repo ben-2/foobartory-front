@@ -9,15 +9,17 @@ import AdbIcon from '@material-ui/icons/Adb';
 import styles from './DisplayActivities.module.css';
 import Loader from '../Loader';
 import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl';
 
 export function DisplayActivities(props: any) {
+  const intl = useIntl();
   const [timerFollowingAction, setTimerFollowingAction] = useState({ action: '', value: 1000 });
   const countFooBar = useStoreState((state) => state.countFooBar);
   const countFoo = useStoreState((state) => state.countFoo);
   const countBar = useStoreState((state) => state.countBar);
   const isRobotAvailable = useStoreState((state) => state.robotsConfiguration.filter((robot) => robot.id === props.robotConf.id)[0].isRobotAvailable);
   const numberOfRobots = useStoreState((state) => state.robotsConfiguration.length);
-  const previousActivity = useStoreState((state) => state.robotsConfiguration.filter((robot) => robot.id === props.robotConf.id)[0].previousActivity);
+  const currentActivity = useStoreState((state) => state.robotsConfiguration.filter((robot) => robot.id === props.robotConf.id)[0].currentActivity);
   const setIsRobotAvailable = useStoreActions((actions) => actions.setIsRobotAvailable);
   const setRobotActivity = useStoreActions((actions) => actions.setRobotActivity);
   const incrementFooCounter = useStoreActions((actions) => actions.incrementFooCounter);
@@ -33,9 +35,9 @@ export function DisplayActivities(props: any) {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
     setRobotActivity({ id: props.robotConf.id, value: 'foo' });
     let timer = 100;
-    if ('foo' !== previousActivity) {
+    if ('foo' !== currentActivity) {
       timer = 600;
-      toast.info("Changement d'activité");
+      toast.info(intl.formatMessage({ id: 'activityChange' }));
     }
     setTimerFollowingAction({ action: 'foo', value: timer });
   }
@@ -49,9 +51,9 @@ export function DisplayActivities(props: any) {
     setRobotActivity({ id: props.robotConf.id, value: 'bar' });
     const timerBar = randomInt(50, 200);
     let timer = timerBar;
-    if ('bar' !== previousActivity) {
+    if ('bar' !== currentActivity) {
       timer = 500 + timerBar;
-      toast.info("Changement d'activité");
+      toast.info(intl.formatMessage({ id: 'activityChange' }));
     }
     setTimerFollowingAction({ action: 'bar', value: timer });
   }
@@ -69,16 +71,16 @@ export function DisplayActivities(props: any) {
       decrementFooCounter(countFoo);
       decrementBarCounter(countBar);
       incrementFooBarCounter(countFooBar);
-      toast.success("FooBar assemblé");
+      toast.success(`FooBar ${intl.formatMessage({ id: 'assembled' })}`);
     } else {
       decrementFooCounter(countFoo);
-      toast.error("FooBar non-assemblé");
+      toast.error(`FooBar ${intl.formatMessage({ id: 'notAssembled' })}`);
     }
 
     let timer = 200;
-    if ('foobar' !== previousActivity) {
+    if ('foobar' !== currentActivity) {
       timer = 700;
-      toast.info("Changement d'activité");
+      toast.info(intl.formatMessage({ id: 'activityChange' }));
     }
     setTimerFollowingAction({ action: 'foobar', value: timer });
   }
@@ -90,7 +92,7 @@ export function DisplayActivities(props: any) {
     }
     addRobot();
     decrementBuyRobot({ foo: countFoo, foobar: countFooBar });
-    toast.success("Robot acheté");
+    toast.success(intl.formatMessage({ id: 'boughtRobot' }));
   }
 
   const isTimeElapsed = (action: any) => {

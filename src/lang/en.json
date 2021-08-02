@@ -9,5 +9,9 @@
   "mine": "Mine",
   "assemble": "Assemble",
   "buyRobot": "Buy robot",
+  "activityChange": "Activity change",
+  "assembled": "assembled",
+  "notAssembled": "not-assembled",
+  "boughtRobot": "Robot bought",
   "end": "Congratulations you have producted all the robots of the game !"
 }
