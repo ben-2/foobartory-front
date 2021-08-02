@@ -16,6 +16,7 @@ export function DisplayActivities(props: any) {
   const countFoo = useStoreState((state) => state.countFoo);
   const countBar = useStoreState((state) => state.countBar);
   const isRobotAvailable = useStoreState((state) => state.robotsConfiguration.filter((robot) => robot.id === props.robotConf.id)[0].isRobotAvailable);
+  const previousActivity = useStoreState((state) => state.robotsConfiguration.filter((robot) => robot.id === props.robotConf.id)[0].previousActivity);
   const setIsRobotAvailable = useStoreActions((actions) => actions.setIsRobotAvailable);
   const setRobotActivity = useStoreActions((actions) => actions.setRobotActivity);
   const incrementFooCounter = useStoreActions((actions) => actions.incrementFooCounter);
@@ -27,7 +28,12 @@ export function DisplayActivities(props: any) {
   const mineFoo = () => {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
     setRobotActivity({ id: props.robotConf.id, value: 'foo' });
-    setTimerFollowingAction({ action: 'foo', value: 100 });
+    let timer = 100;
+    if ('foo' !== previousActivity) {
+      timer = 600;
+      toast.info("Changement d'activité");
+    }
+    setTimerFollowingAction({ action: 'foo', value: timer });
   }
 
   const randomInt = (min: number, max: number) => {
@@ -38,7 +44,12 @@ export function DisplayActivities(props: any) {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
     setRobotActivity({ id: props.robotConf.id, value: 'bar' });
     const timerBar = randomInt(50, 200);
-    setTimerFollowingAction({ action: 'bar', value: timerBar });
+    let timer = timerBar;
+    if ('bar' !== previousActivity) {
+      timer = 500 + timerBar;
+      toast.info("Changement d'activité");
+    }
+    setTimerFollowingAction({ action: 'bar', value: timer });
   }
 
   const mineFooBar = () => {
@@ -59,7 +70,13 @@ export function DisplayActivities(props: any) {
       decrementFooCounter(countFoo);
       toast.error("FooBar non-assemblé");
     }
-    setTimerFollowingAction({ action: 'foobar', value: 200 });
+
+    let timer = 200;
+    if ('foobar' !== previousActivity) {
+      timer = 700;
+      toast.info("Changement d'activité");
+    }
+    setTimerFollowingAction({ action: 'foobar', value: timer });
   }
 
   const isTimeElapsed = (action: any) => {
