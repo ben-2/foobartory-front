@@ -9,5 +9,9 @@
   "mine": "Miner",
   "assemble": "Assembler",
   "buyRobot": "Acheter robot",
+  "activityChange": "Changement d'activité",
+  "assembled": "assemblé",
+  "notAssembled": "non-assemblé",
+  "boughtRobot": "Robot acheté",
   "end": "Félicitations vous avez produits tous les robots du jeu !"
 }
