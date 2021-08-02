@@ -5,6 +5,8 @@ import LangSelect from './components/LangSelect';
 import { useStoreState } from './hooks';
 import StartButton from './components/StartButton';
 import GameBoard from './components/GameBoard';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const isGameStarted = useStoreState((state) => state.isGameStarted);
@@ -17,6 +19,7 @@ function App() {
         <AppSubTitle />
       </div>
       <div>{isGameStarted ? <GameBoard /> : <StartButton />}</div>
+      <ToastContainer hideProgressBar={true} />
     </div>
   );
 }

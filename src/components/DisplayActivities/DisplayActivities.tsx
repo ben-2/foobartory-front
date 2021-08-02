@@ -8,6 +8,7 @@ import BookmarksOutlinedIcon from '@material-ui/icons/BookmarksOutlined';
 import AdbIcon from '@material-ui/icons/Adb';
 import styles from './DisplayActivities.module.css';
 import Loader from '../Loader';
+import { toast } from 'react-toastify';
 
 export function DisplayActivities(props: any) {
   const [timerFollowingAction, setTimerFollowingAction] = useState({ action: '', value: 1000 });
@@ -19,6 +20,9 @@ export function DisplayActivities(props: any) {
   const setRobotActivity = useStoreActions((actions) => actions.setRobotActivity);
   const incrementFooCounter = useStoreActions((actions) => actions.incrementFooCounter);
   const incrementBarCounter = useStoreActions((actions) => actions.incrementBarCounter);
+  const decrementFooCounter = useStoreActions((actions) => actions.decrementFooCounter);
+  const decrementBarCounter = useStoreActions((actions) => actions.decrementBarCounter);
+  const incrementFooBarCounter = useStoreActions((actions) => actions.incrementFooBarCounter);
 
   const mineFoo = () => {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
@@ -34,8 +38,28 @@ export function DisplayActivities(props: any) {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
     setRobotActivity({ id: props.robotConf.id, value: 'bar' });
     const timerBar = randomInt(50, 200);
-    console.log('timerBar : ', timerBar)
     setTimerFollowingAction({ action: 'bar', value: timerBar });
+  }
+
+  const mineFooBar = () => {
+    setIsRobotAvailable({ id: props.robotConf.id, value: false });
+    setRobotActivity({ id: props.robotConf.id, value: 'foobar' });
+    const successChance = randomInt(0, 100);
+    let isSuccess = false;
+    if (successChance <= 60) {
+      isSuccess = true;
+    }
+    console.log('isSuccess : ', isSuccess);
+    if (isSuccess) {
+      decrementFooCounter(countFoo);
+      decrementBarCounter(countBar);
+      incrementFooBarCounter(countFooBar);
+      toast.success("FooBar assemblé");
+    } else {
+      decrementFooCounter(countFoo);
+      toast.error("FooBar non-assemblé");
+    }
+    setTimerFollowingAction({ action: 'foobar', value: 200 });
   }
 
   const isTimeElapsed = (action: any) => {
@@ -81,6 +105,7 @@ export function DisplayActivities(props: any) {
               size="small"
               variant="contained"
               color="primary"
+              onClick={() => mineFooBar()}
             >
               <FormattedMessage id="assemble" /> FooBar
             </Button>
