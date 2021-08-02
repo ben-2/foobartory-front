@@ -25,6 +25,7 @@ export function DisplayActivities(props: any) {
   const decrementBarCounter = useStoreActions((actions) => actions.decrementBarCounter);
   const incrementFooBarCounter = useStoreActions((actions) => actions.incrementFooBarCounter);
   const addRobot = useStoreActions((actions) => actions.addRobot);
+  const decrementBuyRobot = useStoreActions((actions) => actions.decrementBuyRobot);
 
   const mineFoo = () => {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
@@ -83,6 +84,8 @@ export function DisplayActivities(props: any) {
   const buyRobot = () => {
     setRobotActivity({ id: props.robotConf.id, value: 'robot' });
     addRobot();
+    decrementBuyRobot({ foo: countFoo, foobar: countFooBar });
+    toast.success("Robot acheté");
   }
 
   const isTimeElapsed = (action: any) => {

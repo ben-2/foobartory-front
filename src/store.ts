@@ -16,6 +16,7 @@ export interface IStoreModel {
   incrementBarCounter: Action<IStoreModel, number>;
   incrementFooBarCounter: Action<IStoreModel, number>;
   decrementFooCounter: Action<IStoreModel, number>;
+  decrementBuyRobot: Action<IStoreModel, { foo: number, foobar: number }>;
   decrementBarCounter: Action<IStoreModel, number>;
   addRobot: Thunk<IStoreModel>;
 }
@@ -86,6 +87,10 @@ const model: IStoreModel = {
   }),
   decrementBarCounter: action((state, payload) => {
     state.countBar = payload - 1;
+  }),
+  decrementBuyRobot: action((state, payload) => {
+    state.countFoo = payload.foo - 6;
+    state.countFooBar = payload.foobar - 3;
   }),
   addRobot: thunk((actions, payload, { getState }) => {
     const storeState = getState();
