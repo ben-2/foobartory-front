@@ -13,6 +13,7 @@ export interface IStoreModel {
   updateRobotConfiguration: Action<IStoreModel, IRobotAttributes[]>;
   setRobotActivity: Thunk<IStoreModel, { id: number, value: 'foo' | 'bar' | 'foobar' | 'robot' | '' }>;
   incrementFooCounter: Action<IStoreModel, number>;
+  incrementBarCounter: Action<IStoreModel, number>;
 }
 
 const model: IStoreModel = {
@@ -69,6 +70,9 @@ const model: IStoreModel = {
   }),
   incrementFooCounter: action((state, payload) => {
     state.countFoo = payload + 1;
+  }),
+  incrementBarCounter: action((state, payload) => {
+    state.countBar = payload + 1;
   }),
 };
 

@@ -10,7 +10,7 @@ import styles from './DisplayActivities.module.css';
 import Loader from '../Loader';
 
 export function DisplayActivities(props: any) {
-  const [timerFollowingAction, setTimerFollowingAction] = useState(1000);
+  const [timerFollowingAction, setTimerFollowingAction] = useState({ action: '', value: 1000 });
   const countFooBar = useStoreState((state) => state.countFooBar);
   const countFoo = useStoreState((state) => state.countFoo);
   const countBar = useStoreState((state) => state.countBar);
@@ -18,14 +18,32 @@ export function DisplayActivities(props: any) {
   const setIsRobotAvailable = useStoreActions((actions) => actions.setIsRobotAvailable);
   const setRobotActivity = useStoreActions((actions) => actions.setRobotActivity);
   const incrementFooCounter = useStoreActions((actions) => actions.incrementFooCounter);
+  const incrementBarCounter = useStoreActions((actions) => actions.incrementBarCounter);
+
   const mineFoo = () => {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
     setRobotActivity({ id: props.robotConf.id, value: 'foo' });
-    setTimerFollowingAction(100);
+    setTimerFollowingAction({ action: 'foo', value: 100 });
   }
 
-  const isTimeElapsed = () => {
-    incrementFooCounter(countFoo);
+  const randomInt = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const mineBar = () => {
+    setIsRobotAvailable({ id: props.robotConf.id, value: false });
+    setRobotActivity({ id: props.robotConf.id, value: 'bar' });
+    const timerBar = randomInt(50, 200);
+    console.log('timerBar : ', timerBar)
+    setTimerFollowingAction({ action: 'bar', value: timerBar });
+  }
+
+  const isTimeElapsed = (action: any) => {
+    if (action === 'foo') {
+      incrementFooCounter(countFoo);
+    } else if (action === 'bar') {
+      incrementBarCounter(countBar);
+    }
     setIsRobotAvailable({ id: props.robotConf.id, value: true });
   }
   return (
@@ -50,6 +68,7 @@ export function DisplayActivities(props: any) {
                 size="small"
                 variant="contained"
                 color="primary"
+                onClick={() => mineBar()}
               >
                 <FormattedMessage id="mine" /> Bar
               </Button>
