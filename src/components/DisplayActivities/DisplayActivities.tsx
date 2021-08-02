@@ -16,6 +16,7 @@ export function DisplayActivities(props: any) {
   const countFoo = useStoreState((state) => state.countFoo);
   const countBar = useStoreState((state) => state.countBar);
   const isRobotAvailable = useStoreState((state) => state.robotsConfiguration.filter((robot) => robot.id === props.robotConf.id)[0].isRobotAvailable);
+  const numberOfRobots = useStoreState((state) => state.robotsConfiguration.length);
   const previousActivity = useStoreState((state) => state.robotsConfiguration.filter((robot) => robot.id === props.robotConf.id)[0].previousActivity);
   const setIsRobotAvailable = useStoreActions((actions) => actions.setIsRobotAvailable);
   const setRobotActivity = useStoreActions((actions) => actions.setRobotActivity);
@@ -26,6 +27,7 @@ export function DisplayActivities(props: any) {
   const incrementFooBarCounter = useStoreActions((actions) => actions.incrementFooBarCounter);
   const addRobot = useStoreActions((actions) => actions.addRobot);
   const decrementBuyRobot = useStoreActions((actions) => actions.decrementBuyRobot);
+  const endGame = useStoreActions((actions) => actions.endGame);
 
   const mineFoo = () => {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
@@ -83,6 +85,9 @@ export function DisplayActivities(props: any) {
 
   const buyRobot = () => {
     setRobotActivity({ id: props.robotConf.id, value: 'robot' });
+    if (numberOfRobots === 19) {
+      endGame();
+    }
     addRobot();
     decrementBuyRobot({ foo: countFoo, foobar: countFooBar });
     toast.success("Robot acheté");
