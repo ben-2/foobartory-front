@@ -24,6 +24,7 @@ export function DisplayActivities(props: any) {
   const decrementFooCounter = useStoreActions((actions) => actions.decrementFooCounter);
   const decrementBarCounter = useStoreActions((actions) => actions.decrementBarCounter);
   const incrementFooBarCounter = useStoreActions((actions) => actions.incrementFooBarCounter);
+  const addRobot = useStoreActions((actions) => actions.addRobot);
 
   const mineFoo = () => {
     setIsRobotAvailable({ id: props.robotConf.id, value: false });
@@ -77,6 +78,11 @@ export function DisplayActivities(props: any) {
       toast.info("Changement d'activité");
     }
     setTimerFollowingAction({ action: 'foobar', value: timer });
+  }
+
+  const buyRobot = () => {
+    setRobotActivity({ id: props.robotConf.id, value: 'robot' });
+    addRobot();
   }
 
   const isTimeElapsed = (action: any) => {
@@ -134,6 +140,7 @@ export function DisplayActivities(props: any) {
               size="small"
               variant="contained"
               color="primary"
+              onClick={() => buyRobot()}
             >
               <FormattedMessage id="buyRobot" />
             </Button>

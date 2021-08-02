@@ -17,6 +17,7 @@ export interface IStoreModel {
   incrementFooBarCounter: Action<IStoreModel, number>;
   decrementFooCounter: Action<IStoreModel, number>;
   decrementBarCounter: Action<IStoreModel, number>;
+  addRobot: Thunk<IStoreModel>;
 }
 
 const model: IStoreModel = {
@@ -85,6 +86,14 @@ const model: IStoreModel = {
   }),
   decrementBarCounter: action((state, payload) => {
     state.countBar = payload - 1;
+  }),
+  addRobot: thunk((actions, payload, { getState }) => {
+    const storeState = getState();
+    const currentRobotConfLength = storeState.robotsConfiguration.length;
+    const newConf = storeState.robotsConfiguration;
+    newConf.push({ id: currentRobotConfLength + 1, currentActivity: '', isRobotAvailable: true, previousActivity: '' });
+    console.log('newConf : ', newConf);
+    actions.updateRobotConfiguration(newConf);
   }),
 };
 
