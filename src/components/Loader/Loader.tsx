@@ -43,10 +43,10 @@ export function Loader(props: any) {
       setProgress((prevProgress) =>
         prevProgress >= 100 ? 0 : prevProgress + 10
       );
-    }, props.timer);
-  }, [props.timer]);
+    }, props.timer.value);
+  }, [props.timer.value]);
   if (progress >= 100) {
-    props.isTimeElapsed()
+    props.isTimeElapsed(props.timer.action)
   }
   return <CircularProgressWithLabel value={progress} />;
 }
