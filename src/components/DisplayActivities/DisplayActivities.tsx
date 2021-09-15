@@ -66,7 +66,7 @@ export function DisplayActivities(props: any) {
     if (successChance <= 60) {
       isSuccess = true;
     }
-    console.log('isSuccess : ', isSuccess);
+    
     if (isSuccess) {
       decrementFooCounter(countFoo);
       decrementBarCounter(countBar);
