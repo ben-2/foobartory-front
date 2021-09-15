@@ -103,7 +103,7 @@ const model: IStoreModel = {
     const currentRobotConfLength = storeState.robotsConfiguration.length;
     const newConf = storeState.robotsConfiguration;
     newConf.push({ id: currentRobotConfLength + 1, currentActivity: '', isRobotAvailable: true, previousActivity: '' });
-    console.log('newConf : ', newConf);
+
     actions.updateRobotConfiguration(newConf);
   }),
 };
